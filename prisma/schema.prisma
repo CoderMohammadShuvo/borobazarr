@@ -13,17 +13,59 @@ datasource db {
 // user model
 model User {
   id            String          @id @default(auto()) @map("_id") @db.ObjectId
-  email         String?         @unique // Optional email field
-  phone         String          @unique
-  name          String
-  username      String          @unique
-  password      String
-
-  // activityLog []
-
-  @@index([phone, email, username])
-  @@map("users") // Maps to the "users" collection in MongoDB
+  email          String   @unique
+  password       String?
+  city           String?
+  savedLists     List[] 
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
+
+model Product {
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  image       String
+  description String?
+  country     String
+  size        String
+  franchise   String
+  discounts    Discount[]
+
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+}
+
+model Discount {
+   id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  percentage  Int      // Assuming this is in whole numbers (e.g., 15 for 15%)
+  startDate   DateTime
+  endDate     DateTime
+  oldPrice    Float
+  newPrice    Float
+  product   Product @relation(fields: [productId], references: [id])
+  productId String   @db.ObjectId
+  franchise    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model List {
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  user   User @relation(fields: [userId], references: [id])
+  userId String   @db.ObjectId
+  products    ProductInList[] @relation("list")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ProductInList {
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  user   List @relation(fields: [listId], references: [id], name: "list")
+  listId String   @db.ObjectId
+  productId String   @db.ObjectId
+  quantity  Int
+}
+
 
 
 
