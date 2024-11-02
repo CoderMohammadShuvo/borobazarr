@@ -1,5 +1,5 @@
 'use server';
-import prisma from '../../../../prisma';
+import prisma from '../../../../../prisma';
 import { revalidatePath } from 'next/cache';
 import { getBrowserInfo, getDeviceType } from 'src/app/lib/deviceDetect';
 import { any, z } from 'zod';

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import CreateUserSheet from './createProductSheet';
 import { UserDataTable } from './data-table';
 import { columns } from './columns';
-import prisma from '../../../../prisma';
+import prisma from '../../../../../prisma';
 
 export default async function Products() {
   // Fetch item data from the Prisma database

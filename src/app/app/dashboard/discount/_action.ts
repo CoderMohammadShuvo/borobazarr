@@ -1,6 +1,6 @@
 'use server';
-import prisma from '../../../../prisma';
 import { revalidatePath } from 'next/cache';
+import prisma from '../../../../../prisma'
 
 // Handle creating a new discount
 export const createDiscount = async (data: any) => {

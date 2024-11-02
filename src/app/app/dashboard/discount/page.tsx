@@ -2,7 +2,7 @@ import Link from 'next/link';
 import CreateUserSheet from './createProductSheet';
 import { DiscountDataTable } from './data-table';
 import { columns } from './columns';
-import prisma from '../../../../prisma';
+import prisma from '../../../../../prisma';
 import CreateDiscountSheet from './createProductSheet';
 
 export default async function Discount() {
