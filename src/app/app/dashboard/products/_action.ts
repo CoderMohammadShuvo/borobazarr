@@ -44,7 +44,7 @@ export const createProduct = async (data: any) => {
         size,
         franchise,
         discounts: {
-          connect: discounts?.map((discount) => ({ id: discount.id })), // Connect existing discounts by ID
+          connect: discounts?.map((discount:any) => ({ id: discount.id })), // Connect existing discounts by ID
         },
       },
     });
